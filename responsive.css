@@ -1,0 +1,202 @@
+/* Responsive styles */
+
+/* Tablet styles */
+@media screen and (max-width: 1024px) {
+    .feature-cards {
+        flex-direction: column;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .therapist-header {
+        flex-direction: column;
+    }
+
+    .therapist-photo {
+        margin: 0 auto 20px;
+    }
+
+    .therapist-info {
+        text-align: center;
+    }
+
+    #therapist-session-types {
+        justify-content: center;
+    }
+}
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    header .container {
+        flex-wrap: wrap;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .therapist-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .therapists-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resource-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-member {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .auth-container {
+        padding: 20px;
+    }
+
+    .therapist-profile {
+        padding: 20px;
+    }
+
+    .profile-tabs {
+        flex-direction: column;
+    }
+
+    .profile-tabs .tab-btn {
+        width: 100%;
+        text-align: center;
+        border: none;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .profile-tabs .tab-btn.active {
+        border-bottom-color: #0066cc;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .about-content {
+        padding: 20px;
+    }
+}
+
+/* Landscape mobile devices */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+    .auth-container {
+        max-width: 600px;
+    }
+
+    .therapist-photo {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* High resolution screens */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .feature-cards {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* Print styles */
+@media print {
+    header, 
+    footer, 
+    .back-link, 
+    .booking-section, 
+    .reviews-section, 
+    .add-review-form, 
+    .btn {
+        display: none;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    main {
+        padding: 0;
+    }
+
+    .therapist-profile, 
+    .resource-content, 
+    .about-content {
+        box-shadow: none;
+        border: none;
+    }
+} 
