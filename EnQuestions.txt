@@ -1,0 +1,40 @@
+1. Purpose and Target Audience:    
+
+What is the main purpose of this platform?  (For example, to facilitate finding psychologists, to offer information about available services, to create a network of professionals, etc.)  Yes, to facilitate finding therapists, to offer general information about therapy, and a list of available therapists through the association, potentially with a booking and reminder system.    
+Who will be the main audience for the platform?  (For example, social workers, directors of placement centers, psychologists, potential funders, etc.)  Youth from the system/vulnerable environments    
+Are there similar existing platforms?  If so, what works well about them and what could be improved?  I have seen various such platforms for paid therapists, but I don't know of anything similar that is pro bono    
+What are the success indicators for this platform?  How will its impact be measured?  I'm thinking of measuring through user feedback that assesses: how easily they found a therapist, how easily they managed to schedule a session  But also for therapists to evaluate how it helped them schedule sessions and send reminders.    
+2. Platform Functionalities:    
+
+What specific information about psychologists needs to be included on the platform?  (For example, name, specialization, experience with children from placement centers, therapy methods, languages spoken, availability, contact details, fee/free of charge, etc.)  Photo, name, short friendly description, a "Why therapy with him/her" - what "their thing" brings to therapy, possibly reviews from other clients (among youth or not) + a calendar where they can book a session.    
+Will there be a search and filtering system for psychologists?  By what criteria should the search be possible (e.g., location, specialization, age of children they work with, etc.)?  For filters, I'm thinking male/female therapist, age, specializations for certain disorders, online/office, city.    
+Will there be a rating or review system for psychologists?  Who will be able to leave reviews?  Yes, any client should be able to leave one after it's approved by a moderator.    
+Will additional resources for users be included (e.g., articles, guides, information about childhood trauma, relevant legislation, etc.)?  Yes, that would be nice.    
+Will there be a news or events section related to child psychology and placement centers?  That's a longer-term thing, for now, I'd say no.    
+Will direct contact with psychologists be possible through the platform?  If yes, how (contact form, email address, phone number)?  Ideally, they could book directly through the platform and the psychologist would receive a notification via email/phone.    
+Will there be a dedicated area for placement centers (with information about them and their needs)?  In the future, yes, not initially. We would also like to put statistics and research conducted by us.    
+Is a forum or discussion group functionality desired for professionals?  Yes, it would be nice to have a forum, especially for young people, I thought.    
+Will an authentication and account management system be needed for users or psychologists?  Yes    
+Will versions in multiple languages be available (considering you are in Romania)?  Only Romanian for now.    
+3. Technical and Design Aspects:    
+
+Are there any preferences regarding the platform's design (look, colors, logo, etc.)?  Yes, we have a brand book, logo, preferred colors, and fonts; for this, I can put you in touch with the communication manager.    
+Does the platform need to be responsive (work well on various devices: desktop, tablet, mobile)?  Yes, especially on the phone, I'd say.    
+Are there specific requirements related to data security (GDPR, etc.)?  Yes, the standard ones, these need to be reviewed by the association's lawyer.  As we advance with the idea, I will add her to the conversation.    
+What technologies should be used for platform development?  Is there any preference?  I really don't know much about this.    
+Will integration with other systems or databases be necessary?  Possibly, as we develop more complex databases.  But ideally, it should automatically update the number of sessions attended by the youth. Is that realistic?    
+Is there a budget allocated for the development and maintenance of the platform?  Currently, we don't have a budget for this.  We can consider it for next year depending on how this collaboration with Inner Foundation progresses.    
+Who will be responsible for updating and maintaining the platform after launch?  TBD - are you referring to someone technical or rather someone for updating info on the site?    
+4. Content and Data:    
+
+Where will the information about psychologists come from?  Will it be provided by them directly, collected from public sources, or through another mechanism?  Collected by us from the collaborating therapists, which you are also part of.    
+How will the accuracy and timeliness of the information be ensured?  By the person we designate as responsible for maintenance.    
+Who will be responsible for creating and managing content (articles, guides, etc.)?  We will have internally employed psychologists, as well as other employees who can create content.    
+Is there an existing database of psychologists or placement centers that can be imported?  Yes, the database with the collaborating therapists who are also in the WhatsApp group.    
+5. Legal and Ethical Aspects:    
+
+How will compliance with the confidentiality of data for psychologists and placement centers be ensured?    
+Will user agreements or privacy policies be necessary?    
+How will potential complaints or disputes be managed?  I will add Nico here as we advance with the discussion    
+
+Sources and related content

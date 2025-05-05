@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platformă Terapie Pro Bono</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/data.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Terapie Pro Bono</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" data-page="home" class="active">Acasă</a></li>
+                    <li><a href="#" data-page="therapists">Terapeuți</a></li>
+                    <li><a href="#" data-page="resources">Resurse</a></li>
+                    <li><a href="#" data-page="forum">Forum</a></li>
+                    <li><a href="#" data-page="about">Despre noi</a></li>
+                    <li><a href="#" id="auth-link" data-page="auth">Autentificare</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Content will be loaded dynamically here -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contactează-ne</h3>
+                    <p>Email: contact@terapieprobono.ro</p>
+                    <p>Telefon: 0700 000 000</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legături rapide</h3>
+                    <ul>
+                        <li><a href="#" data-page="home">Acasă</a></li>
+                        <li><a href="#" data-page="therapists">Terapeuți</a></li>
+                        <li><a href="#" data-page="resources">Resurse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Urmărește-ne</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Platformă Terapie Pro Bono. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates for pages -->
+    <template id="home-template">
+        <section class="hero">
+            <div class="container">
+                <h2>Terapie gratuită pentru tinerii din medii vulnerabile</h2>
+                <p>Conectăm tinerii cu terapeuți profesioniști care oferă servicii pro bono</p>
+                <a href="#" class="btn primary-btn" data-page="therapists">Găsește un terapeut</a>
+            </div>
+        </section>
+        
+        <section class="features">
+            <div class="container">
+                <h2>Cum funcționează</h2>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <h3>1. Creează un cont</h3>
+                        <p>Înregistrează-te pentru a avea acces la toți terapeuții disponibili</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>2. Găsește un terapeut</h3>
+                        <p>Caută și filtrează terapeuți în funcție de nevoile tale</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>3. Programează o ședință</h3>
+                        <p>Alege un interval convenabil și rezervă direct prin platformă</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <div class="container">
+                <h2>Ce spun utilizatorii noștri</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial">
+                        <p>"Această platformă mi-a schimbat viața. Am găsit un terapeut minunat care m-a ajutat să depășesc traumele din copilărie."</p>
+                        <div class="testimonial-author">Maria, 19 ani</div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Procesul de găsire a unui terapeut a fost foarte simplu. În câteva minute, am reușit să-mi fac o programare."</p>
+                        <div class="testimonial-author">Alex, 22 ani</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="auth-template">
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="login">Autentificare</button>
+                        <button class="tab-btn" data-tab="register">Înregistrare</button>
+                    </div>
+                    
+                    <div class="tab-content" id="login">
+                        <form id="login-form">
+                            <div class="form-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Parolă</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Autentificare</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content" id="register" style="display: none;">
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="register-name">Nume</label>
+                                <input type="text" id="register-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email">Email</label>
+                                <input type="email" id="register-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-password">Parolă</label>
+                                <input type="password" id="register-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-type">Tip utilizator</label>
+                                <select id="user-type" required>
+                                    <option value="youth">Tânăr</option>
+                                    <option value="therapist">Terapeut</option>
+                                </select>
+                            </div>
+                            <div id="therapist-fields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="therapist-description">Descriere scurtă</label>
+                                    <textarea id="therapist-description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="therapist-why">De ce terapie cu mine?</label>
+                                    <textarea id="therapist-why"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="therapist-specialization">Specializări</label>
+                                    <input type="text" id="therapist-specialization" placeholder="Separă specializările prin virgulă">
+                                </div>
+                                <div class="form-group">
+                                    <label for="therapist-city">Oraș</label>
+                                    <input type="text" id="therapist-city">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipul sesiunilor</label>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="online-sessions">
+                                        <label for="online-sessions">Online</label>
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <input type="checkbox" id="office-sessions">
+                                        <label for="office-sessions">La cabinet</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Înregistrare</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="therapists-template">
+        <section class="therapists-section">
+            <div class="container">
+                <h2>Terapeuți disponibili</h2>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="city-filter">Oraș</label>
+                        <select id="city-filter">
+                            <option value="">Toate orașele</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="session-type-filter">Tip sesiune</label>
+                        <select id="session-type-filter">
+                            <option value="">Toate tipurile</option>
+                            <option value="online">Online</option>
+                            <option value="office">La cabinet</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="gender-filter">Gen</label>
+                        <select id="gender-filter">
+                            <option value="">Toate</option>
+                            <option value="male">Masculin</option>
+                            <option value="female">Feminin</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="specialization-filter">Specializare</label>
+                        <select id="specialization-filter">
+                            <option value="">Toate specializările</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="therapists-list" class="therapists-grid">
+                    <!-- Therapists will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="therapist-detail-template">
+        <section class="therapist-detail">
+            <div class="container">
+                <div class="back-link">
+                    <a href="#" data-page="therapists">&larr; Înapoi la listă</a>
+                </div>
+                
+                <div class="therapist-profile">
+                    <div class="therapist-header">
+                        <div class="therapist-photo">
+                            <img src="img/placeholder.jpg" alt="Photo" id="therapist-img">
+                        </div>
+                        <div class="therapist-info">
+                            <h2 id="therapist-name"></h2>
+                            <p id="therapist-city"></p>
+                            <div id="therapist-session-types" class="session-types"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="therapist-description">
+                        <h3>Descriere</h3>
+                        <p id="therapist-description-text"></p>
+                    </div>
+                    
+                    <div class="therapist-why">
+                        <h3>De ce terapie cu mine?</h3>
+                        <p id="therapist-why-text"></p>
+                    </div>
+                    
+                    <div class="therapist-specializations">
+                        <h3>Specializări</h3>
+                        <div id="specializations-list" class="tag-list"></div>
+                    </div>
+                    
+                    <div class="booking-section">
+                        <h3>Programare</h3>
+                        <div id="calendar"></div>
+                        <div id="time-slots"></div>
+                        <button id="book-session-btn" class="btn primary-btn" disabled>Programează ședință</button>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <h3>Recenzii</h3>
+                        <div id="reviews-list"></div>
+                        
+                        <div id="add-review-form" class="review-form">
+                            <h4>Adaugă o recenzie</h4>
+                            <form id="review-form">
+                                <div class="form-group">
+                                    <label for="review-rating">Evaluare</label>
+                                    <select id="review-rating" required>
+                                        <option value="5">5 stele</option>
+                                        <option value="4">4 stele</option>
+                                        <option value="3">3 stele</option>
+                                        <option value="2">2 stele</option>
+                                        <option value="1">1 stea</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="review-text">Recenzie</label>
+                                    <textarea id="review-text" required></textarea>
+                                </div>
+                                <button type="submit" class="btn primary-btn">Trimite recenzie</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="profile-template">
+        <section class="profile-section">
+            <div class="container">
+                <h2>Profilul meu</h2>
+                
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="info">Informații</button>
+                    <button class="tab-btn" data-tab="appointments">Programări</button>
+                    <button class="tab-btn therapist-only" data-tab="calendar">Calendar</button>
+                </div>
+                
+                <div class="tab-content" id="info">
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-name">Nume</label>
+                            <input type="text" id="profile-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email">Email</label>
+                            <input type="email" id="profile-email" readonly>
+                        </div>
+                        
+                        <div class="therapist-only" id="therapist-profile-fields">
+                            <div class="form-group">
+                                <label for="profile-description">Descriere scurtă</label>
+                                <textarea id="profile-description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-why">De ce terapie cu mine?</label>
+                                <textarea id="profile-why"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-specialization">Specializări</label>
+                                <input type="text" id="profile-specialization" placeholder="Separă specializările prin virgulă">
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-city">Oraș</label>
+                                <input type="text" id="profile-city">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipul sesiunilor</label>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="profile-online-sessions">
+                                    <label for="profile-online-sessions">Online</label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="profile-office-sessions">
+                                    <label for="profile-office-sessions">La cabinet</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn primary-btn">Salvează modificările</button>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="appointments" style="display: none;">
+                    <h3>Programările mele</h3>
+                    <div id="appointments-list">
+                        <!-- Appointments will be loaded here dynamically -->
+                    </div>
+                </div>
+                
+                <div class="tab-content therapist-only" id="calendar" style="display: none;">
+                    <h3>Gestionează disponibilitatea</h3>
+                    <div id="availability-calendar"></div>
+                    <div class="time-slots-editor">
+                        <h4>Intervale orare disponibile</h4>
+                        <div id="availability-slots"></div>
+                        <button id="add-slot-btn" class="btn secondary-btn">Adaugă interval orar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="resources-template">
+        <section class="resources-section">
+            <div class="container">
+                <h2>Resurse utile</h2>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h3>Ce este terapia?</h3>
+                        <p>Află mai multe despre procesul terapeutic și beneficiile sale pentru sănătatea mentală.</p>
+                        <a href="#" class="read-more" data-resource="therapy-info">Citește mai mult</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Cum să te pregătești pentru prima ședință</h3>
+                        <p>Sfaturi utile pentru a te simți pregătit și confortabil la prima ta ședință de terapie.</p>
+                        <a href="#" class="read-more" data-resource="first-session">Citește mai mult</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Gestionarea traumelor din copilărie</h3>
+                        <p>Informații despre cum terapia poate ajuta în procesarea și vindecarea traumelor timpurii.</p>
+                        <a href="#" class="read-more" data-resource="childhood-trauma">Citește mai mult</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3>Tehnici de relaxare</h3>
+                        <p>Exerciții simple de relaxare și mindfulness pe care le poți practica acasă.</p>
+                        <a href="#" class="read-more" data-resource="relaxation">Citește mai mult</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="resource-detail-template">
+        <section class="resource-detail">
+            <div class="container">
+                <div class="back-link">
+                    <a href="#" data-page="resources">&larr; Înapoi la resurse</a>
+                </div>
+                
+                <h2 id="resource-title"></h2>
+                <div id="resource-content">
+                    <!-- Resource content will be loaded here dynamically -->
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="forum-template">
+        <section class="forum-section">
+            <div class="container">
+                <h2>Forum comunitate</h2>
+                
+                <div class="forum-actions">
+                    <button id="new-topic-btn" class="btn primary-btn">Subiect nou</button>
+                </div>
+                
+                <div id="forum-topics">
+                    <!-- Forum topics will be loaded here dynamically -->
+                </div>
+                
+                <div id="new-topic-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <h3>Crează un subiect nou</h3>
+                        <form id="new-topic-form">
+                            <div class="form-group">
+                                <label for="topic-title">Titlu</label>
+                                <input type="text" id="topic-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="topic-content">Conținut</label>
+                                <textarea id="topic-content" required></textarea>
+                            </div>
+                            <button type="submit" class="btn primary-btn">Postează</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="topic-detail-template">
+        <section class="topic-detail">
+            <div class="container">
+                <div class="back-link">
+                    <a href="#" data-page="forum">&larr; Înapoi la forum</a>
+                </div>
+                
+                <div class="topic-header">
+                    <h2 id="topic-title"></h2>
+                    <div class="topic-meta">
+                        <span id="topic-author"></span>
+                        <span id="topic-date"></span>
+                    </div>
+                </div>
+                
+                <div id="topic-content" class="topic-content"></div>
+                
+                <div class="replies-section">
+                    <h3>Răspunsuri</h3>
+                    <div id="replies-list">
+                        <!-- Replies will be loaded here dynamically -->
+                    </div>
+                </div>
+                
+                <div class="reply-form">
+                    <h3>Adaugă un răspuns</h3>
+                    <form id="reply-form">
+                        <div class="form-group">
+                            <textarea id="reply-content" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Răspunde</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="about-template">
+        <section class="about-section">
+            <div class="container">
+                <h2>Despre noi</h2>
+                
+                <div class="about-content">
+                    <p>Platforma Terapie Pro Bono a fost creată pentru a facilita accesul tinerilor din medii vulnerabile la servicii de terapie de calitate.</p>
+                    <p>Misiunea noastră este de a conecta tinerii care au nevoie de sprijin psihologic cu terapeuți profesioniști care oferă servicii pro bono.</p>
+                    <p>Credem că fiecare tânăr merită șansa de a-și îmbunătăți sănătatea mentală și de a-și depăși traumele, indiferent de situația financiară.</p>
+                </div>
+                
+                <div class="team-section">
+                    <h3>Echipa noastră</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="img/team-placeholder.jpg" alt="Team Member">
+                            </div>
+                            <h4>Nume Prenume</h4>
+                            <p>Fondator</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="img/team-placeholder.jpg" alt="Team Member">
+                            </div>
+                            <h4>Nume Prenume</h4>
+                            <p>Coordonator terapeuți</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</body>
+</html> 

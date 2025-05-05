@@ -1,0 +1,250 @@
+DOCUMENTAȚIE PLATFORMĂ TERAPIE PRO BONO
+
+Acest document descrie fiecare pagină din aplicație, funcționalitățile acestora și datele utilizate.
+
+=======================
+1. PAGINA PRINCIPALĂ (HOME)
+=======================
+
+Descriere: Pagina de start a platformei care prezintă scopul și funcționalitățile principale.
+
+Funcționalități:
+- Prezentare generală a platformei
+- Explicarea procesului în 3 pași (creare cont, găsire terapeut, programare ședință)
+- Afișarea testimoniale
+
+Template: #home-template
+Controller: App.loadPage('home')
+Date utilizate: Testimoniale (hardcodate în template)
+
+=======================
+2. AUTENTIFICARE / ÎNREGISTRARE
+=======================
+
+Descriere: Pagină combinată pentru autentificare și înregistrare utilizatori (tineri și terapeuți).
+
+Funcționalități:
+- Autentificare utilizator existent (email/parolă)
+- Înregistrare utilizator nou (cu câmpuri diferite pentru tineri vs. terapeuți)
+- Comutare între formulare
+
+Template: #auth-template
+Controller: 
+- Auth.login()
+- Auth.register()
+- Auth.toggleAuthTabs()
+Date utilizate: 
+- TherapyData.getUsers()
+- TherapyData.getUserByEmail()
+- TherapyData.saveUser()
+
+=======================
+3. LISTĂ TERAPEUȚI
+=======================
+
+Descriere: Pagină ce afișează lista terapeuților disponibili, cu opțiuni de filtrare.
+
+Funcționalități:
+- Afișare listă terapeuți cu detalii de bază
+- Filtrare după oraș, gen, specializare, tip sesiune (online/cabinet)
+- Link către pagina de detalii terapeut
+
+Template: #therapists-template
+Controller: App.loadTherapistsPage()
+Date utilizate: 
+- TherapyData.getTherapists()
+- Filtre: oraș, specializare, gen, tip sesiune
+
+=======================
+4. DETALII TERAPEUT
+=======================
+
+Descriere: Pagină detaliată pentru un terapeut specific, cu opțiunea de programare.
+
+Funcționalități:
+- Afișare informații complete terapeut
+- Calendar disponibilitate și programare
+- Recenzii de la clienți
+- Formular adăugare recenzie
+
+Template: #therapist-detail-template
+Controller: 
+- App.loadTherapistDetail()
+- App.loadCalendarForTherapist()
+- App.showTimeSlotsForDay()
+- App.bookSession()
+- App.loadReviewsForTherapist()
+- App.submitReview()
+Date utilizate: 
+- TherapyData.getTherapistById()
+- TherapyData.getReviewsByTherapistId()
+- TherapyData.saveReview()
+- TherapyData.getAppointments()
+- TherapyData.saveAppointment()
+
+=======================
+5. PROFIL UTILIZATOR
+=======================
+
+Descriere: Pagină pentru vizualizarea și editarea datelor de profil și gestionarea programărilor.
+
+Funcționalități:
+- Vizualizare/editare date profil
+- Vizualizare programări
+- Pentru terapeuți: gestionare disponibilitate (simplificat)
+
+Template: #profile-template
+Controller: 
+- App.loadProfilePage()
+- App.loadUserAppointments()
+- App.toggleProfileTabs()
+- App.updateProfile()
+Date utilizate: 
+- TherapyData.getUserById()
+- TherapyData.saveUser()
+- TherapyData.getAppointmentsByUserId()
+- TherapyData.getAppointmentsByTherapistId()
+
+=======================
+6. RESURSE
+=======================
+
+Descriere: Pagină cu resurse educaționale despre terapie și sănătate mentală.
+
+Funcționalități:
+- Afișare carduri resurse disponibile
+- Link către articole detaliate
+
+Template: #resources-template
+Controller: (fără controller specific, conținut static)
+Date utilizate: Cardurile de resurse (hardcodate în template)
+
+=======================
+7. DETALII RESURSĂ
+=======================
+
+Descriere: Pagină ce afișează un articol/resursă completă.
+
+Funcționalități:
+- Afișare conținut complet al articolului
+
+Template: #resource-detail-template
+Controller: App.loadResourceDetail()
+Date utilizate: 
+- TherapyData.getResourceById()
+- TherapyData.resourceContents (conținut stocat în data.js)
+
+=======================
+8. FORUM
+=======================
+
+Descriere: Pagină de forum pentru discuții între utilizatori.
+
+Funcționalități:
+- Afișare listă subiecte de discuție
+- Creare subiect nou
+- Sortare subiecte după dată
+
+Template: #forum-template
+Controller: 
+- App.loadForumPage()
+- App.submitNewTopic()
+Date utilizate: 
+- TherapyData.getForumTopics()
+- TherapyData.getForumRepliesByTopicId() (pentru a număra răspunsurile)
+- TherapyData.saveForumTopic()
+
+=======================
+9. DETALII SUBIECT FORUM
+=======================
+
+Descriere: Pagină pentru un subiect specific de forum, cu răspunsuri.
+
+Funcționalități:
+- Afișare conținut subiect
+- Afișare răspunsuri
+- Adăugare răspuns nou
+
+Template: #topic-detail-template
+Controller: 
+- App.loadTopicDetail()
+- App.loadRepliesForTopic()
+- App.submitReply()
+Date utilizate: 
+- TherapyData.getForumTopicById()
+- TherapyData.getForumRepliesByTopicId()
+- TherapyData.saveForumReply()
+
+=======================
+10. DESPRE NOI
+=======================
+
+Descriere: Pagină informativă despre proiect și echipă.
+
+Funcționalități:
+- Prezentare misiune și viziune
+- Prezentare membri echipă
+
+Template: #about-template
+Controller: (fără controller specific, conținut static)
+Date utilizate: Conținut static în template
+
+=======================
+COMPONENTE REUTILIZABILE
+=======================
+
+1. Header & Navigation
+- Meniu principal
+- Logică schimbare butoane autentificare/profil
+
+2. Footer
+- Informații contact
+- Link-uri sociale
+- Copyright
+
+3. Tabs
+- Utilizate în autentificare/înregistrare și profil
+
+4. Calendar
+- Utilizat pentru programări și disponibilitate
+
+5. Modals
+- Utilizate pentru creare subiect forum
+
+=======================
+FLUXUL DE DATE
+=======================
+
+1. Inițializare
+- La încărcarea aplicației, se verifică dacă există date în localStorage
+- Dacă nu există, se utilizează datele demo din TherapyData
+
+2. Autentificare
+- Datele utilizatorului curent sunt stocate în Auth.currentUser și localStorage
+
+3. Navigare
+- Parametrii pentru pagini sunt transmiși prin App.navigateTo() și stocați în URL
+
+4. Salvare date
+- Toate modificările (profil, programări, recenzii, forum) sunt salvate imediat în localStorage
+
+=======================
+NOTE TEHNICE
+=======================
+
+1. Persistență
+- Toate datele sunt stocate în localStorage în format JSON
+- Există funcții helper în TherapyData pentru CRUD pe fiecare tip de date
+
+2. Limitări
+- Calendarul de disponibilitate este simplificat
+- Recenziile necesită aprobare (setate ca unapproved inițial)
+- Nicio funcționalitate de server-side (e.g., notificări, email)
+
+3. Securitate
+- Parolele sunt stocate în plain text (nu este recomandat pentru producție)
+- Nu există verificări complexe de securitate
+
+4. Localizare
+- Textele sunt în limba română
+- Formatul datelor este pentru România (ro-RO) 
