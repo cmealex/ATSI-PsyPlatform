@@ -77,6 +77,16 @@ header .container {
     color: #0066cc;
 }
 
+.logo-link {
+    color: #0066cc;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
 nav ul {
     display: flex;
 }
@@ -198,6 +208,28 @@ footer {
     font-size: 14px;
 }
 
+.copyright p {
+    margin: 8px 0;
+}
+
+.developer-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.developer-link:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+.platform-credit {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
 /* Home page styles */
 .hero {
     background-color: #0066cc;
@@ -217,6 +249,8 @@ footer {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    color: #ffffff;
+    font-weight: 500;
 }
 
 .features {
@@ -834,6 +868,149 @@ footer {
     color: #777;
 }
 
+/* Admin panel styles */
+.admin-section {
+    padding: 60px 0;
+}
+
+.admin-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-tabs .tab-btn {
+    padding: 15px 20px;
+}
+
+.admin-tab-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-actions {
+    margin-bottom: 20px;
+}
+
+.admin-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* BUG-013 FIX: Smooth scrolling on iOS */
+    margin-bottom: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 600px; /* BUG-013 FIX: Force scroll on small screens */
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.admin-table thead {
+    background-color: #f0f0f0;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.admin-table th {
+    font-weight: 600;
+    color: #333;
+}
+
+.admin-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.danger-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.danger-btn:hover {
+    background-color: #c82333;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.status-confirmed {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.status-completed {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.status-badge.status-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.review-text-preview {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0066cc;
+}
+
 /* Utility classes */
 .hidden {
     display: none !important;
@@ -845,4 +1022,73 @@ footer {
 
 .user-logged-in .therapist-only.show-therapist {
     display: block;
+}
+
+.admin-only {
+    display: none;
+}
+
+.user-logged-in .admin-only.show-admin {
+    display: block;
+}
+
+/* BUG-007 FIX: No results message styling */
+.no-results-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.no-results-content p {
+    margin: 10px 0;
+    color: #666;
+}
+
+/* BUG-009 FIX: Character counter styling */
+.character-count {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* BUG-014 FIX: Accessibility improvements - Focus indicators */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+.btn:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+}
+
+.therapist-card:focus-within {
+    outline: 2px solid #0066cc;
+    outline-offset: 2px;
+}
+
+.time-slot:focus {
+    outline: 2px solid #0066cc;
+    outline-offset: 1px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #0066cc;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-to-main:focus {
+    top: 0;
 } 

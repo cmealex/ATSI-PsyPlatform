@@ -1,4 +1,4 @@
-DOCUMENTAȚIE PLATFORMĂ TERAPIE PRO BONO
+DOCUMENTAȚIE ATSI PSYPLATFORM
 
 Acest document descrie fiecare pagină din aplicație, funcționalitățile acestora și datele utilizate.
 
@@ -229,6 +229,70 @@ FLUXUL DE DATE
 - Toate modificările (profil, programări, recenzii, forum) sunt salvate imediat în localStorage
 
 =======================
+=======================
+11. PANOU ADMINISTRARE (ADMIN)
+=======================
+
+Descriere: Panou de control pentru administratori cu gestionare completă a platformei.
+
+Funcționalități:
+- Gestionare utilizatori (CRUD)
+- Aprobare și gestionare psihologi
+- Moderare recenzii
+- Vizualizare toate programările
+- Statistici platformă
+
+Restricții de Acces:
+- Doar utilizatori cu userType === 'admin'
+- Verificare în Auth.isAdmin()
+- Redirect la home dacă nu este admin
+
+Template: #admin-template
+Controller:
+- App.loadAdminPage()
+- App.toggleAdminTabs()
+- App.loadAdminUsers()
+- App.loadAdminPsychologists()
+- App.loadAdminReviews()
+- App.loadAdminAppointments()
+- App.loadAdminStatistics()
+- App.saveUserFromModal()
+- App.savePsychologistFromModal()
+- App.approvePsychologist()
+- App.approveReviewAdmin()
+
+Date utilizate:
+- TherapyData.getUsers()
+- TherapyData.getTherapists(true) // include neaprobați
+- TherapyData.getReviews()
+- TherapyData.getAppointments()
+- TherapyData.approveTherapist()
+- TherapyData.approveReview()
+- TherapyData.deleteUser()
+- TherapyData.deleteTherapist()
+- TherapyData.deleteReview()
+
+=======================
+TIPURI DE UTILIZATORI
+=======================
+
+1. Administrator (admin)
+- Acces complet la panou administrare
+- Email: admin@atsi.ro
+- Parolă: admin123
+
+2. Psiholog (psiholog)
+- Poate oferi servicii de terapie
+- Profil extins cu informații profesionale
+- Necesită aprobare de la admin
+- Gestionare disponibilitate și programări
+
+3. Beneficiar (beneficiar)
+- Poate căuta și rezerva ședințe cu psihologi
+- Poate adăuga recenzii
+- Acces la forum și resurse
+
+=======================
 NOTE TEHNICE
 =======================
 
@@ -239,12 +303,25 @@ NOTE TEHNICE
 2. Limitări
 - Calendarul de disponibilitate este simplificat
 - Recenziile necesită aprobare (setate ca unapproved inițial)
+- Psihologii noi necesită aprobare admin
 - Nicio funcționalitate de server-side (e.g., notificări, email)
 
 3. Securitate
 - Parolele sunt stocate în plain text (nu este recomandat pentru producție)
 - Nu există verificări complexe de securitate
+- ⚠️ Această implementare este DOAR pentru DEMO/DEZVOLTARE
 
 4. Localizare
 - Textele sunt în limba română
-- Formatul datelor este pentru România (ro-RO) 
+- Formatul datelor este pentru România (ro-RO)
+
+5. Psihologi Incluși
+- 11 psihologi cu date complete
+- Poze din folderul Date/Poze2/
+- Toți aprobați inițial
+- Acoperire în mai multe orașe din România
+
+6. Bază de Date
+- Vezi DATABASE-STRUCTURE.md pentru detalii complete
+- Structură simplă bazată pe localStorage
+- Ușor de migrat către backend real 

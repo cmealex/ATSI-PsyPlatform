@@ -1,4 +1,4 @@
-# Platformă Terapie Pro Bono - Ghid de Utilizare
+# Platformă ATSI PsyPlatform - Ghid de Utilizare
 
 Această platformă a fost creată pentru a conecta tinerii din medii vulnerabile cu terapeuți care oferă servicii pro bono. Platforma este construită folosind HTML, CSS și JavaScript, fără a necesita un server backend, utilizând localStorage pentru persistența datelor.
 

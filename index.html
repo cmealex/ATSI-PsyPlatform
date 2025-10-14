@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platformă Terapie Pro Bono</title>
+    <title>ATSI PsyPlatform</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="responsive.css">
+    <!-- UX Enhancement: Modern Design System -->
+    <link rel="stylesheet" href="modern-ux.css">
+    <!-- BUG-004 FIX: DOMPurify for XSS protection -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="data.js" defer></script>
     <script src="auth.js" defer></script>
     <script src="app.js" defer></script>
+    <!-- UX Enhancement: Modern Interactions -->
+    <script src="modern-ux.js" defer></script>
 </head>
 <body>
+    <!-- BUG-014 FIX: Skip to main content for screen readers -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Terapie Pro Bono</h1>
+                <h1><a href="#" data-page="home" class="logo-link">ATSI PsyPlatform</a></h1>
             </div>
             <nav>
                 <ul>
@@ -23,14 +35,15 @@
                     <li><a href="#" data-page="resources">Resurse</a></li>
                     <li><a href="#" data-page="forum">Forum</a></li>
                     <li><a href="#" data-page="about">Despre noi</a></li>
+                    <li class="admin-only"><a href="#" data-page="admin">Administrare</a></li>
                     <li><a href="#" id="auth-link" data-page="auth">Autentificare</a></li>
                 </ul>
             </nav>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
         </div>
     </header>
 
@@ -38,12 +51,15 @@
         <!-- Content will be loaded dynamically here -->
     </main>
 
+    <!-- UX Enhancement: Toast Notifications Container -->
+    <div class="toast-container" id="toast-container"></div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contactează-ne</h3>
-                    <p>Email: contact@terapieprobono.ro</p>
+                    <p>Email: contact@atsi-psyplatform.ro</p>
                     <p>Telefon: 0700 000 000</p>
                 </div>
                 <div class="footer-section">
@@ -55,16 +71,17 @@
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Urmărește-ne</h3>
+                    <h3>Urmărește-mă</h3>
                     <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="https://www.facebook.com/PsyAlexSimion/" target="_blank" rel="noopener noreferrer" class="social-link">Facebook</a>
+                        <a href="https://www.linkedin.com/in/simionalexandrumihail/" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+                        <a href="https://www.psyalexsimion.com/" target="_blank" rel="noopener noreferrer" class="social-link">Website</a>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Platformă Terapie Pro Bono. Toate drepturile rezervate.</p>
+                <p>Dezvoltat cu ❤️ de <a href="https://www.psyalexsimion.com/" target="_blank" rel="noopener noreferrer" class="developer-link">Alex Simion</a> © 2025</p>
+                <p class="platform-credit">ATSI PsyPlatform - Conectând tinerii cu terapeuți profesioniști</p>
             </div>
         </div>
     </footer>
@@ -156,8 +173,8 @@
                             <div class="form-group">
                                 <label for="user-type">Tip utilizator</label>
                                 <select id="user-type" required>
-                                    <option value="youth">Tânăr</option>
-                                    <option value="therapist">Terapeut</option>
+                                    <option value="beneficiar">Beneficiar</option>
+                                    <option value="psiholog">Psiholog</option>
                                 </select>
                             </div>
                             <div id="therapist-fields" style="display: none;">
@@ -250,7 +267,7 @@
                 <div class="therapist-profile">
                     <div class="therapist-header">
                         <div class="therapist-photo">
-                            <img src="img/placeholder.jpg" alt="Photo" id="therapist-img">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23f0f0f0' width='200' height='200'/%3E%3C/svg%3E" alt="Photo" id="therapist-img">
                         </div>
                         <div class="therapist-info">
                             <h2 id="therapist-name"></h2>
@@ -278,7 +295,7 @@
                         <h3>Programare</h3>
                         <div id="calendar"></div>
                         <div id="time-slots"></div>
-                        <button id="book-session-btn" class="btn primary-btn" disabled>Programează ședință</button>
+                        <button id="book-session-btn" class="btn primary-btn" disabled aria-label="Book therapy session">Programează ședință</button>
                     </div>
                     
                     <div class="reviews-section">
@@ -300,7 +317,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="review-text">Recenzie</label>
-                                    <textarea id="review-text" required></textarea>
+                                    <textarea id="review-text" required maxlength="1000" placeholder="Maximum 1000 caractere"></textarea>
+                                    <small class="character-count">0/1000 caractere</small>
                                 </div>
                                 <button type="submit" class="btn primary-btn">Trimite recenzie</button>
                             </form>
@@ -510,7 +528,7 @@
                 <h2>Despre noi</h2>
                 
                 <div class="about-content">
-                    <p>Platforma Terapie Pro Bono a fost creată pentru a facilita accesul tinerilor din medii vulnerabile la servicii de terapie de calitate.</p>
+                    <p>ATSI PsyPlatform a fost creată pentru a facilita accesul tinerilor din medii vulnerabile la servicii de terapie de calitate.</p>
                     <p>Misiunea noastră este de a conecta tinerii care au nevoie de sprijin psihologic cu terapeuți profesioniști care oferă servicii pro bono.</p>
                     <p>Credem că fiecare tânăr merită șansa de a-și îmbunătăți sănătatea mentală și de a-și depăși traumele, indiferent de situația financiară.</p>
                 </div>
@@ -520,14 +538,14 @@
                     <div class="team-grid">
                         <div class="team-member">
                             <div class="member-photo">
-                                <img src="img/team-placeholder.jpg" alt="Team Member">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23f0f0f0' width='150' height='150'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23999'%3EAT%3C/text%3E%3C/svg%3E" alt="Team Member">
                             </div>
                             <h4>Nume Prenume</h4>
                             <p>Fondator</p>
                         </div>
                         <div class="team-member">
                             <div class="member-photo">
-                                <img src="img/team-placeholder.jpg" alt="Team Member">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%23f0f0f0' width='150' height='150'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='24' fill='%23999'%3ECT%3C/text%3E%3C/svg%3E" alt="Team Member">
                             </div>
                             <h4>Nume Prenume</h4>
                             <p>Coordonator terapeuți</p>
@@ -537,5 +555,246 @@
             </div>
         </section>
     </template>
+
+    <template id="admin-template">
+        <section class="admin-section">
+            <div class="container">
+                <h2>Panou de administrare</h2>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="users">Utilizatori</button>
+                    <button class="tab-btn" data-tab="psychologists">Psihologi</button>
+                    <button class="tab-btn" data-tab="reviews">Recenzii</button>
+                    <button class="tab-btn" data-tab="appointments">Programări</button>
+                    <button class="tab-btn" data-tab="statistics">Statistici</button>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="tab-content admin-tab-content" id="users">
+                    <div class="admin-actions">
+                        <button id="add-user-btn" class="btn primary-btn">Adaugă utilizator</button>
+                    </div>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nume</th>
+                                    <th>Email</th>
+                                    <th>Tip</th>
+                                    <th>Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Psychologists Tab -->
+                <div class="tab-content admin-tab-content" id="psychologists" style="display: none;">
+                    <div class="admin-actions">
+                        <button id="add-psychologist-btn" class="btn primary-btn">Adaugă psiholog</button>
+                    </div>
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="psychologists-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nume</th>
+                                    <th>Email</th>
+                                    <th>Oraș</th>
+                                    <th>Status</th>
+                                    <th>Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Psychologists will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Reviews Tab -->
+                <div class="tab-content admin-tab-content" id="reviews" style="display: none;">
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="reviews-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Utilizator</th>
+                                    <th>Psiholog</th>
+                                    <th>Rating</th>
+                                    <th>Text</th>
+                                    <th>Status</th>
+                                    <th>Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Reviews will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Appointments Tab -->
+                <div class="tab-content admin-tab-content" id="appointments" style="display: none;">
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Beneficiar</th>
+                                    <th>Psiholog</th>
+                                    <th>Data</th>
+                                    <th>Ora</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Appointments will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Statistics Tab -->
+                <div class="tab-content admin-tab-content" id="statistics" style="display: none;">
+                    <div class="statistics-grid">
+                        <div class="stat-card">
+                            <h3>Utilizatori totali</h3>
+                            <div class="stat-number" id="stat-users">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Beneficiari</h3>
+                            <div class="stat-number" id="stat-beneficiaries">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Psihologi</h3>
+                            <div class="stat-number" id="stat-psychologists">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Psihologi aprobați</h3>
+                            <div class="stat-number" id="stat-approved-psychologists">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Programări totale</h3>
+                            <div class="stat-number" id="stat-appointments">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Recenzii</h3>
+                            <div class="stat-number" id="stat-reviews">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Recenzii aprobate</h3>
+                            <div class="stat-number" id="stat-approved-reviews">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Subiecte forum</h3>
+                            <div class="stat-number" id="stat-forum-topics">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Modal for add/edit user -->
+    <div id="user-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="user-modal">&times;</span>
+            <h3 id="user-modal-title">Adaugă utilizator</h3>
+            <form id="user-form">
+                <input type="hidden" id="user-id">
+                <div class="form-group">
+                    <label for="user-name">Nume</label>
+                    <input type="text" id="user-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="user-password">Parolă</label>
+                    <input type="password" id="user-password">
+                    <small>Lasă necompletat pentru a păstra parola existentă</small>
+                </div>
+                <div class="form-group">
+                    <label for="user-user-type">Tip utilizator</label>
+                    <select id="user-user-type" required>
+                        <option value="beneficiar">Beneficiar</option>
+                        <option value="psiholog">Psiholog</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn primary-btn">Salvează</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for add/edit psychologist -->
+    <div id="psychologist-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" data-modal="psychologist-modal">&times;</span>
+            <h3 id="psychologist-modal-title">Adaugă psiholog</h3>
+            <form id="psychologist-form">
+                <input type="hidden" id="psych-id">
+                <div class="form-group">
+                    <label for="psych-name">Nume</label>
+                    <input type="text" id="psych-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="psych-email">Email</label>
+                    <input type="email" id="psych-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="psych-password">Parolă</label>
+                    <input type="password" id="psych-password">
+                </div>
+                <div class="form-group">
+                    <label for="psych-description">Descriere</label>
+                    <textarea id="psych-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="psych-why">De ce terapie cu mine?</label>
+                    <textarea id="psych-why" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="psych-specializations">Specializări (separate prin virgulă)</label>
+                    <input type="text" id="psych-specializations" required>
+                </div>
+                <div class="form-group">
+                    <label for="psych-city">Oraș</label>
+                    <input type="text" id="psych-city" required>
+                </div>
+                <div class="form-group">
+                    <label for="psych-gender">Gen</label>
+                    <select id="psych-gender" required>
+                        <option value="male">Masculin</option>
+                        <option value="female">Feminin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tipul sesiunilor</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="psych-online">
+                        <label for="psych-online">Online</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="psych-office">
+                        <label for="psych-office">La cabinet</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="psych-approved">
+                        Aprobat
+                    </label>
+                </div>
+                <button type="submit" class="btn primary-btn">Salvează</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html> 

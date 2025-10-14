@@ -1,4 +1,4 @@
-# Platformă Terapie Pro Bono - Rezumatul Implementării
+# Platformă ATSI PsyPlatform - Rezumatul Implementării
 
 Această aplicație a fost dezvoltată pentru a satisface cerințele descrise în documentul de cerințe (PRD) și pe baza întrebărilor și răspunsurilor din discuțiile inițiale. Iată cum implementarea răspunde fiecărei cerințe principale:
 
